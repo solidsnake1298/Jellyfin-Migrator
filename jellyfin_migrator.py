@@ -62,7 +62,7 @@ log_file = "/tmp/jf-migrator.log"
 # changed.
 path_replacements = {
     # Self-explanatory, I guess. "\\" if migrating *to* Windows, "/" else.
-    #"target_path_slash": "/",
+    "target_path_slash": "/",
     # Paths to your libraries
     #"D:/Serien": "/data/tvshows",
     #"F:/Serien": "/data/tvshows",
