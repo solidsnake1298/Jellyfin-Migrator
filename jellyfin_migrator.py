@@ -30,21 +30,6 @@ from string import ascii_letters
 import os
 
 
-# TODO BEFORE YOU START:
-# * Create a copy of the jellyfin database you want to migrate
-# * Delete the following temp/cache folders (resp. the matching
-#   folders for your installation)
-#   * C:/ProgramData/Jellyfin/Server/cache
-#   * C:/ProgramData/Jellyfin/Server/log
-#   * C:/ProgramData/Jellyfin/Server/data/subtitles
-#     Note: this only contains *cached* subtitles that have been
-#           extracted on-the-fly from files streamed to clients.
-#   * RTFM (read the README.md) and you're ready to go.
-#   * Careful when replacing everything in your new installation,
-#     you might want to *not* copy your old network settings
-#     (C:/ProgramData/Jellyfin/Server/config/networking.xml)
-
-
 # Please specify a log file. The script is rather verbose and important
 # errors might get lost in the process. You should definitely check the
 # log file after running the script to see if there are any warnings or
@@ -58,7 +43,7 @@ import os
 #   * Go to "Search -> Bookmark -> Remove Bookmarked Lines"
 #   * Repeat as needed
 # Text encoding is UTF-8 (in npp selectable under "Encoding -> UTF-8")
-log_file = "D:/jf-migrator.log"
+log_file = "~/jf-migrator.log"
 
 
 # These paths will be processed in the order they're listed here.
@@ -77,21 +62,21 @@ log_file = "D:/jf-migrator.log"
 # changed.
 path_replacements = {
     # Self-explanatory, I guess. "\\" if migrating *to* Windows, "/" else.
-    "target_path_slash": "/",
+    #"target_path_slash": "/",
     # Paths to your libraries
-    "D:/Serien": "/data/tvshows",
-    "F:/Serien": "/data/tvshows",
-    "F:/Filme": "/data/movies",
-    "F:/Musik": "/data/music",
+    #"D:/Serien": "/data/tvshows",
+    #"F:/Serien": "/data/tvshows",
+    #"F:/Filme": "/data/movies",
+    #"F:/Musik": "/data/music",
     # Paths to the different parts of the jellyfin database. Determine these
     # by comparing your existing installation with the paths in your new
     # installation.
-    "C:/ProgramData/Jellyfin/Server/config": "/config",
-    "C:/ProgramData/Jellyfin/Server/cache": "/config/cache",
-    "C:/ProgramData/Jellyfin/Server/log": "/config/log",
-    "C:/ProgramData/Jellyfin/Server": "/config/data", # everything else: metadata, plugins, ...
-    "C:/ProgramData/Jellyfin/Server/transcodes": "/config/data/transcodes",
-    "C:/Program Files/Jellyfin/Server/ffmpeg.exe": "usr/lib/jellyfin-ffmpeg/ffmpeg",
+    "/etc/jellyfin": "/config",
+    "/var/cache/jellyfin": "/config/cache",
+    "/var/log/jellyfin": "/config/log",
+    "/var/lib/jellyfin": "/config/data", # everything else: metadata, plugins, ...
+    "/var/lib/jellyfin/transcodes": "/config/data/transcodes",
+    "usr/lib/jellyfin-ffmpeg/ffmpeg": "usr/lib/jellyfin-ffmpeg/ffmpeg",
     "%MetadataPath%": "%MetadataPath%",
     "%AppDataPath%": "%AppDataPath%",
 }
@@ -123,9 +108,9 @@ fs_path_replacements = {
     "/config": "/",
     "%AppDataPath%": "/data/data",
     "%MetadataPath%": "/data/metadata",
-    "/data/tvshows": "Y:/Serien",
-    "/data/movies": "Y:/Filme",
-    "/data/music": "Y:/Musik",
+    #"/data/tvshows": "Y:/Serien",
+    #"/data/movies": "Y:/Filme",
+    #"/data/music": "Y:/Musik",
 }
 
 
@@ -136,9 +121,9 @@ fs_path_replacements = {
 # and then do the replacement according to the path_replacements dict.
 # This is required if you copied your jellyfin DB to another location and then
 # start processing it with this script.
-original_root = Path("C:/ProgramData/Jellyfin/Server")
-source_root = Path("D:/Jellyfin/Server")
-target_root = Path("D:/Jellyfin-dummy")
+original_root = Path("/var/lib/jellyfin")
+source_root = Path("/var/lib/jellyfin")
+target_root = Path("/docker/jellyfin-prod")
 
 
 ### The To-Do Lists: todo_list_paths, todo_list_id_paths and todo_list_ids.
