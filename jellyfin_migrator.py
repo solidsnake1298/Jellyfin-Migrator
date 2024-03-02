@@ -77,8 +77,8 @@ path_replacements = {
     "/var/lib/jellyfin": "/config/data", # everything else: metadata, plugins, ...
     "/var/lib/jellyfin/transcodes": "/config/data/transcodes",
     "usr/lib/jellyfin-ffmpeg/ffmpeg": "usr/lib/jellyfin-ffmpeg/ffmpeg",
-    "%MetadataPath%": "%MetadataPath%",
-    "%AppDataPath%": "%AppDataPath%",
+    "/var/lib/jellyfin/metadata": "/config/metadata",
+    "/var/lib/jellyfin/data": "/config/data/data",
 }
 
 
@@ -106,8 +106,8 @@ fs_path_replacements = {
     "log_no_warnings": False,
     "target_path_slash": "/",
     "/config": "/",
-    "%AppDataPath%": "/data/data",
-    "%MetadataPath%": "/data/metadata",
+    "/var/lib/jellyfin/data": "/data/data",
+    "/var/lib/jellyfin/metadata": "/data/metadata",
     #"/data/tvshows": "Y:/Serien",
     #"/data/movies": "Y:/Filme",
     #"/data/music": "Y:/Musik",
