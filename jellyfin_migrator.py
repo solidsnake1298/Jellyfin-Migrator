@@ -43,7 +43,7 @@ import os
 #   * Go to "Search -> Bookmark -> Remove Bookmarked Lines"
 #   * Repeat as needed
 # Text encoding is UTF-8 (in npp selectable under "Encoding -> UTF-8")
-log_file = "~/jf-migrator.log"
+log_file = "/tmp/jf-migrator.log"
 
 
 # These paths will be processed in the order they're listed here.
